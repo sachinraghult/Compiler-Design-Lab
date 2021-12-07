@@ -1,0 +1,17 @@
+/*2019103573*/
+%option noyywrap
+%{
+%}
+start \/\*
+end  \*\/
+%%
+\/\/(.*) ;
+{start}.*{end} ;
+%%
+int main()
+{
+	yyin=fopen("T35731a3.txt","r");
+	yyout=fopen("out.txt","w");
+	yylex();
+	return 0;
+}

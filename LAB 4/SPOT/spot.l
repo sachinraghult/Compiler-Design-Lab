@@ -1,0 +1,25 @@
+%option noyywrap
+%{
+	#include<stdio.h>
+%}
+
+%%
+"while"|"for"|"do"|"print"|"def"|"return" {printf("\t%s - keyword\n", yytext);}
+"int"|"float"|"double"|"char"|"if"|"else" {printf("\t%s - keyword", yytext);}
+[a-zA-Z_][a-zA-Z0-9_]* {printf("\t%s - identifier\n", yytext);}
+"/"|"-"|"*"|"+" {printf("\t%s - operator (arithmetic)\n", yytext);}
+"<="|"=="|">=" {printf("\t%s - operator (relational)\n", yytext);}
+"=" {printf("\t%s - operator (assignment)\n", yytext);}
+"++" {printf("\t%s - operator (increment)\n", yytext);}
+"--" {printf("\t%s - operator (decrement)\n", yytext);}
+[(){}|,:;] {printf("\t%s - separator\n", yytext);}
+[0-9]*"."[0-9]+ {printf("\t%s - number (float)\n", yytext);}
+[0-9]+ {printf("\t%s - number (integer)\n", yytext);}
+. ;
+%%
+
+int main()
+{
+	yyin = fopen("spot.txt" ,"r");
+	yylex();
+}

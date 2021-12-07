@@ -1,0 +1,10 @@
+if( x == 1 )
+	if( y == 2 )
+		statement 1;
+	else
+		statement 2;
+else
+	if( z == 3 )
+		statement 3;
+	else
+		statement 4;

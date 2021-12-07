@@ -1,0 +1,9 @@
+if(expression  == value1){
+	statement1;
+}
+else if(expression  == value2){
+	statement2;
+}
+else{
+	statementDefault;
+}

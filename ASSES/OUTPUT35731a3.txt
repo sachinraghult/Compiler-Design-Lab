@@ -1,0 +1,5 @@
+typedef union { 
+intiValue;  
+charsIndex;  
+nodeType *nPtr;  
+} YYSTYPE;

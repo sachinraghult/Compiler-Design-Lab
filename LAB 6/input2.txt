@@ -1,0 +1,4 @@
+int area_square(int s)
+{
+	return s*s;
+}

@@ -1,0 +1,9 @@
+#include<stdio.h>
+int max(int x,int y) {
+	return (x<y?y:x);
+}
+int main() {
+	int x=30,y=40;
+	printf("Minimum: %d",min(x,y));
+	return 0;
+}

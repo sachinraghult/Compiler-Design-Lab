@@ -1,0 +1,37 @@
+%{
+	#include <string.h>
+	int initialization = 1, condition = 0, incordec = 0, content = 0;
+	char initializationbuffer[20], conditionbuffer[20], incordecbuffer[20], contentbuffer[20];
+%}
+
+%option noyywrap
+
+%%
+"while (" { initialization = 0;
+ condition = 1; }
+"{" { condition = 0;
+content = 1; }
+")" {}
+"}" {}
+";" { if(content) {content = 0; incordec=1;}}
+. { if(initialization) 
+	strcat(initializationbuffer, yytext);
+    else if(condition)
+	strcat(conditionbuffer, yytext);
+    else if(incordec)
+	strcat(incordecbuffer, yytext);
+    else if(content) 
+	strcat(contentbuffer, yytext); }
+%%
+
+int main(int argc, char* argv[]) {
+	if(argc > 1) { FILE* fp = fopen(argv[1], "r");
+	if(fp) yyin = fp; }
+	yylex();
+	FILE* fp = fopen("output1.txt", "w");
+	strcat(contentbuffer,";");
+	fprintf(fp, "for(%s; %s; %s)\n{\n%s\n}\n", initializationbuffer, conditionbuffer, incordecbuffer, 
+	contentbuffer);
+	fclose(fp);
+	return 0;
+}

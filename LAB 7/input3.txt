@@ -1,0 +1,6 @@
+if(a == 10 || c == 30)
+	if(b == 20)
+		statement 1;
+else if(d == 40)
+	if(e == 50)
+		statement 2;

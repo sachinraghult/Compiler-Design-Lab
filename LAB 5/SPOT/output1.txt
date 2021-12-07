@@ -1,0 +1,11 @@
+
+Lowercase letter = com
+First letter - c, Last letter - m
+Uppercase letter = comPUTER
+First letter - c, Last letter - RcomPUTER 
+Uppercase letter = SCI
+First letter - S, Last letter - I
+Lowercase letter = SCIen
+First letter - S, Last letter - n
+Uppercase letter = SCIenCE
+First letter - S, Last letter - E

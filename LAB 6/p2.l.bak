@@ -1,0 +1,35 @@
+%option noyywrap
+%{
+	#include<stdio.h>
+	#include<string.h>
+	int i;
+%}
+datatype "int"|"char"|"float"|"double"
+%%
+" "[a-zA-Z_][a-zA-Z0-9_]*"(" {
+	fprintf(yyout,"#define ");
+	for(i=1;i<yyleng;i++)
+		fprintf(yyout,"%c",toupper(yytext[i]));
+}
+(datatype)?" "[a-zA-Z_][a-zA-Z0-9_]*(")"|",") {
+	for(i=yyleng-2; yytext[i]!=' ' && i>=0; i--)
+		fprintf(yyout,"%c",yytext[i]);
+	if(yytext[yyleng-1]==',')
+		fprintf(yyout,",",yytext);
+}
+[\n] ;
+"return "[a-zA-Z0-9*+-/\)\(]+";" {
+	fprintf(yyout,") ",yytext);
+	for(i=7; i<yyleng-1; i++)
+		fprintf(yyout,"%c",yytext[i]);
+}
+. ;
+%%
+int main()
+{
+	extern FILE *yyin, *yyout; 
+	yyin=fopen("input.txt", "r");
+	yyout=fopen("output.txt", "w");
+	yylex();
+	return 0;
+}

@@ -1,0 +1,19 @@
+/*2019103573*/
+%option noyywrap
+%{
+	#include<stdio.h>
+%}
+
+number [0-9]+
+symbol ("+"|"-"|"*"|"/")?
+%%
+^{symbol}?{number}? { printf("Match Found\n"); }
+.* { printf("Match not Found\n"); }
+%%
+int main()
+{
+	yyin=fopen("T30181_a1.txt","r");
+	yyout=fopen("out.txt","w");
+	yylex();
+	return 0;
+}
