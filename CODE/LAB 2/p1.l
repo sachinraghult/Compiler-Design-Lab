@@ -7,7 +7,7 @@
 %%
 
 \n {printf("\n\n");}
-[A-Za-z0-9]"ab"+[A-Za-z0-9] {printf("Match");}
+[A-Z]+ {printf("Match");}
 .* {printf("No Match");}
 %%
 
